@@ -2,7 +2,9 @@ import express from "express";
 import monogose from "mongoose";
 import cors from "cors";
 import UserRoute from "./Routes/UserRoutes";
+import QuickRoute from "./Routes/QuickSaveRoute";
 const port: number = 6400;
+import InvestRoute from "./Routes/InvestmentRoute";
 const url = "mongodb://localhost/PaymentPiggyVestDB";
 
 const app = express();
@@ -20,6 +22,8 @@ monogose.connect(url).then(() => {
 });
 
 app.use("/api/user", UserRoute);
+app.use("/api/quick", QuickRoute);
+app.use("/api/investment", InvestRoute);
 
 app.listen(port, () => {
 	console.log(`listening on ${port}`);
